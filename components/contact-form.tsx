@@ -3,8 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
 import {
@@ -19,17 +18,15 @@ import { Textarea } from "./ui/textarea";
 import { useToast } from "./ui/use-toast";
 
 const formSchema = z.object({
-  name: z.string().min(2).max(50),
+  name: z.string().min(2),
   number: z.string().min(2).max(50),
   email: z.string().min(2).max(50),
-  message: z.string(),
+  message: z.string().min(5),
 });
 
 interface ContactFormProps {}
 
 export const ContactForm: React.FC<ContactFormProps> = ({}) => {
-  const params = useParams();
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -46,7 +43,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
 
   const onSubmit: SubmitHandler<FormData> = async (values) => {
     try {
-      setLoading(true);
       await axios.post(`/api/email`, values);
       form.reset();
       toast({
@@ -119,14 +115,18 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Textarea placeholder="Your message" {...field} />
+                <Textarea placeholder="Your feedback/message" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type="submit" className="mt-5 w-fit" disabled={isLoading}>
+        <Button
+          type="submit"
+          className="mt-5 w-fit"
+          disabled={isLoading || !form.formState.isValid}
+        >
           Submit
         </Button>
       </form>

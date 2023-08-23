@@ -34,14 +34,15 @@ export default function ContactFormEmail({
           <Container>
             <Section className="bg-white borderBlack my-10 px-10 py-4 rounded-md">
               <Heading className="leading-tight">
-                You received the following message from the contact form
+                You received the following message from the contact form in your
+                site
               </Heading>
-              <Text>The sender's name is: {name}</Text>
+              <Text>Sender's name: {name}</Text>
               <Hr />
-              <Text>The sender's number is: {number}</Text>
-              <Text>The sender's email is: {email}</Text>
+              <Text>Sender's number: {number}</Text>
+              <Text>Sender's email is: {email}</Text>
               <Hr />
-              <Text>{message}</Text>
+              <Text>Message:{message}</Text>
               <Hr />
             </Section>
           </Container>
