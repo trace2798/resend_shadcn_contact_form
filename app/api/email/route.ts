@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     }
 
     const { email, message, name, number } = body;
-    console.log(body, "BODY");
+
     if (!email) {
       return new NextResponse("Email is required", { status: 400 });
     }
@@ -29,9 +29,9 @@ export async function POST(req: NextRequest) {
       return new NextResponse("Number is required", { status: 400 });
     }
 
-    const data = await resend.emails.send({
+    await resend.emails.send({
       from: "Contact Form <onboarding@resend.dev>",
-      to: "shreyaschaliha27@protonmail.com",
+      to: "YOUR_EMAIL_WITH_WHICH_YOU_HAVE_CREATED_THE_ACCOUNT_IN_RESEND",
       subject: `${name} send you this message.`,
       reply_to: email,
       react: React.createElement(FeedbackFormEmail, {
@@ -41,16 +41,15 @@ export async function POST(req: NextRequest) {
         number: number,
       }),
     });
-    // make sure the value for "to" field is your own email address with which you make created the account in resend.Otherwise you will get a error with statusCode 403
+    // If you are using the free plan from resend labs. Make sure the value for "to" field is your own email address with which you created the account in resend.
+    // Otherwise you will get a error with statusCode 403
     // {
     //     name: 'invalid_to_address',
-    //     message: 'You can only send testing emails to your own email address (shreyaschaliha27@protonmail.com).',
+    //     message: 'You can only send testing emails to your own email address (your resend account email will be visible here).',
     //     statusCode: 403
     //   }
-    console.log(data);
     return NextResponse.json("SUBMITTED");
   } catch (error) {
-    console.log("[email_post]", error);
     return new NextResponse("Internal error", { status: 500 });
   }
 }
