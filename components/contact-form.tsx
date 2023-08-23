@@ -23,8 +23,8 @@ import { Textarea } from "./ui/textarea";
 import { useToast } from "./ui/use-toast";
 
 const formSchema = z.object({
-  //   name: z.string().min(2).max(50),
-  //   number: z.string().min(2).max(50),
+  name: z.string().min(2).max(50),
+  number: z.string().min(2).max(50),
   email: z.string().min(2).max(50),
   message: z.string(),
 });
@@ -39,8 +39,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      //   name: "",
-      //   number: "",
+      name: "",
+      number: "",
       email: "",
       message: "",
     },
@@ -77,7 +77,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col w-full grid-cols-12 gap-2 px-2 py-4 mt-5 border rounded-lg md:px-4 focus-within:shadow-sm"
       >
-        {/* <HoverCard openDelay={200}>
+        <HoverCard openDelay={200}>
           <HoverCardTrigger asChild>
             <Label htmlFor="summarize" className="text-left w-fit">
               Name (required)
@@ -128,7 +128,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
               <FormMessage />
             </FormItem>
           )}
-        />*/}
+        />
         <HoverCard openDelay={200}>
           <HoverCardTrigger asChild>
             <Label htmlFor="summarize" className="mt-3 text-left w-fit">

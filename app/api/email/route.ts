@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
 
-    const { email, message } = body;
+    const { email, message, name, number } = body;
     console.log(body, "BODY");
     if (!email) {
       return new NextResponse("Email is required", { status: 400 });
@@ -26,6 +26,8 @@ export async function POST(req: Request) {
       react: React.createElement(ContactFormEmail, {
         message: message,
         email: email,
+        name: name,
+        number: number,
       }),
     });
     // {
