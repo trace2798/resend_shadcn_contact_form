@@ -1,13 +1,19 @@
 import React from "react";
 import ContactFormEmail from "@/email/create-form-email";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { Resend } from "resend";
+import { rateLimit } from "@/lib/rate-limit";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
+    const id = req.ip ?? "anonymous";
+    const { success } = await rateLimit(id);
+    if (!success) {
+      return new NextResponse("Rate limit exceeded", { status: 429 });
+    }
 
     const { email, message, name, number } = body;
     console.log(body, "BODY");

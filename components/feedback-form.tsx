@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
@@ -52,12 +52,22 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({}) => {
       });
       router.refresh();
     } catch (error) {
-      console.error(error);
-      toast({
-        title: "Failed to send information",
-        description: "Make sure all fields are filled up.",
-        variant: "destructive",
-      });
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 429) {
+          return toast({
+            title: "Too many request.",
+            description: "Try in an hour.",
+            variant: "green",
+          });
+        }
+      } else {
+        console.error(error);
+        toast({
+          title: "Failed to send information",
+          description: "Make sure all fields are filled up.",
+          variant: "destructive",
+        });
+      }
     }
   };
 
