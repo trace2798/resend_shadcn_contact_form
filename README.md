@@ -6,7 +6,7 @@ use_cases: ["Rate-limiting"]
 author: "trace2798"
 ---
 
-This example show a way of how you can implement rate-limiting using Upstash. In this example the feedback form is rate-limited.
+This example show a way of how you can implement [rate-limiting](https://github.com/upstash/ratelimit) using Upstash. In this example the feedback form is rate-limited.
 
 ### Demo
 
