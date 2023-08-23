@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "React Mail with Upstash Ratelimit",
+  title: "Upstash Ratelimit with react mail/resend labs",
   description:
     "Made using react mail, upstash ratemail and next.js app directory.",
 };
