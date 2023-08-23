@@ -36,6 +36,7 @@ export async function POST(req: Request) {
         number: number,
       }),
     });
+    // make sure the value for "to" field is your own email address with which you make created the account in resend.Otherwise you will get a error with statusCode 403
     // {
     //     name: 'invalid_to_address',
     //     message: 'You can only send testing emails to your own email address (shreyaschaliha27@protonmail.com).',
