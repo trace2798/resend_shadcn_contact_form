@@ -17,6 +17,12 @@ export async function POST(req: Request) {
     if (!message) {
       return new NextResponse("Message is required", { status: 400 });
     }
+    if (!name) {
+      return new NextResponse("Name is required", { status: 400 });
+    }
+    if (!number) {
+      return new NextResponse("Number is required", { status: 400 });
+    }
 
     const data = await resend.emails.send({
       from: "Contact Form <onboarding@resend.dev>",

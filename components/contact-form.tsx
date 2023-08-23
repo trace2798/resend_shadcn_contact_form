@@ -1,24 +1,20 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
-import { HoverContentComponent } from "./HoverContentComponent";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "./ui/form";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
-import { useParams, useRouter } from "next/navigation";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "./ui/use-toast";
 
@@ -54,15 +50,15 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
       await axios.post(`/api/email`, values);
       form.reset();
       toast({
-        title: "Client Data Added",
-        description: "Client Data Successfully Added",
+        title: "Feedback successfully send",
+        description: "We will contact you back as soon as possible.",
         variant: "default",
       });
       router.refresh();
     } catch (error) {
       console.error(error);
       toast({
-        title: "Failed to submit data",
+        title: "Failed to send information",
         description: "Make sure all fields are filled up.",
         variant: "destructive",
       });
@@ -75,100 +71,48 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col w-full grid-cols-12 gap-2 px-2 py-4 mt-5 border rounded-lg md:px-4 focus-within:shadow-sm"
+        className="flex flex-col w-full grid-cols-12 gap-2 px-2 py-4 mt-5 border rounded-lg md:px-4 focus-within:shadow-sm max-w-lg"
       >
-        <HoverCard openDelay={200}>
-          <HoverCardTrigger asChild>
-            <Label htmlFor="summarize" className="text-left w-fit">
-              Name (required)
-            </Label>
-          </HoverCardTrigger>
-          <HoverCardContent
-            align="start"
-            className="w-[260px] text-sm"
-            side="left"
-          >
-            <HoverContentComponent type="Name of the Client" />
-          </HoverCardContent>
-        </HoverCard>
+        <FormLabel className="mt-3">Name</FormLabel>
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Client's name" {...field} />
+                <Input placeholder="Your name" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <HoverCard openDelay={200}>
-          <HoverCardTrigger asChild>
-            <Label htmlFor="summarize" className="mt-3 text-left w-fit">
-              Contact Number
-            </Label>
-          </HoverCardTrigger>
-          <HoverCardContent
-            align="start"
-            className="w-[260px] text-sm"
-            side="left"
-          >
-            <HoverContentComponent type="Contact Number for Client" />
-          </HoverCardContent>
-        </HoverCard>
+        <FormLabel className="mt-3">Contact Number</FormLabel>
         <FormField
           control={form.control}
           name="number"
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Client's number" {...field} />
+                <Input placeholder="Your number" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <HoverCard openDelay={200}>
-          <HoverCardTrigger asChild>
-            <Label htmlFor="summarize" className="mt-3 text-left w-fit">
-              Email
-            </Label>
-          </HoverCardTrigger>
-          <HoverCardContent
-            align="start"
-            className="w-[260px] text-sm"
-            side="left"
-          >
-            <HoverContentComponent type="Client's email, in case of minor their parents." />
-          </HoverCardContent>
-        </HoverCard>
+        <FormLabel className="mt-3">Email</FormLabel>
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Client's email" {...field} />
+                <Input placeholder="Your email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <HoverCard openDelay={200}>
-          <HoverCardTrigger asChild>
-            <Label htmlFor="address" className="text-left w-fit">
-              Message (required)
-            </Label>
-          </HoverCardTrigger>
-          <HoverCardContent
-            align="start"
-            className="w-[260px] text-sm"
-            side="left"
-          >
-            <HoverContentComponent type="Address of the Client" />
-          </HoverCardContent>
-        </HoverCard>
+        <FormLabel className="mt-3">Message</FormLabel>
         <FormField
           control={form.control}
           name="message"
@@ -182,7 +126,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
           )}
         />
 
-        <Button type="submit" className="mt-5" disabled={isLoading}>
+        <Button type="submit" className="mt-5 w-fit" disabled={isLoading}>
           Submit
         </Button>
       </form>
