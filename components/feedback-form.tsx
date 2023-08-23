@@ -24,9 +24,9 @@ const formSchema = z.object({
   message: z.string().min(5),
 });
 
-interface ContactFormProps {}
+interface FeedbackFormProps {}
 
-export const ContactForm: React.FC<ContactFormProps> = ({}) => {
+export const FeedbackForm: React.FC<FeedbackFormProps> = ({}) => {
   const router = useRouter();
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
