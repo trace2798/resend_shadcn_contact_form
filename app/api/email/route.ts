@@ -1,9 +1,8 @@
-import React from "react";
-import ContactFormEmail from "@/email/create-form-email";
-import { NextRequest, NextResponse } from "next/server";
-
-import { Resend } from "resend";
+import FeedbackFormEmail from "@/email/create-email-from-form";
 import { rateLimit } from "@/lib/rate-limit";
+import { NextRequest, NextResponse } from "next/server";
+import React from "react";
+import { Resend } from "resend";
 
 export async function POST(req: NextRequest) {
   try {
@@ -35,7 +34,7 @@ export async function POST(req: NextRequest) {
       to: "shreyaschaliha27@protonmail.com",
       subject: `${name} send you this message.`,
       reply_to: email,
-      react: React.createElement(ContactFormEmail, {
+      react: React.createElement(FeedbackFormEmail, {
         message: message,
         email: email,
         name: name,
