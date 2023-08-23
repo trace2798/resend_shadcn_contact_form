@@ -1,6 +1,6 @@
 ---
 title: Rate-limiting a feedback form.
-products: ["redis", "resend-labs"]
+products: ["redis", "resend-labs", "react-email"]
 stack: ["Next.js", "Typescript"]
 use_cases: ["Rate-limiting"]
 author: "trace2798"
