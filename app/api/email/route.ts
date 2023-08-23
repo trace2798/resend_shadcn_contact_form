@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
 
     await resend.emails.send({
       from: "Contact Form <onboarding@resend.dev>",
-      to: "YOUR_EMAIL_WITH_WHICH_YOU_HAVE_CREATED_THE_ACCOUNT_IN_RESEND[If you are using the free plan]",
+      to: "shreyaschaliha27@protonmail.com",
       subject: `${name} send you this message.`,
       reply_to: email,
       react: React.createElement(FeedbackFormEmail, {
