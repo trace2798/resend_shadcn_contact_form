@@ -18,10 +18,6 @@ export function ModeToggle() {
 
   return (
     <>
-      {/* <HoverCard>
-        <HoverCardTrigger>Hover</HoverCardTrigger>
-        <HoverCardContent>Click to change</HoverCardContent>
-      </HoverCard> */}
       <HoverCard>
         <DropdownMenu>
           <HoverCardTrigger>
