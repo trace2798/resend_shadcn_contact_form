@@ -87,7 +87,7 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({}) => {
       <div className="fixed right-10 bottom-16">
         <Dialog>
           <DialogTrigger>
-            <MessageCircle className="h-10 w-10" />
+            <MessageCircle className="h-10 w-10 text-zinc-700 dark:text-neutral-300" />
             {/* <Button variant="outline">Send a Feedback</Button> */}
           </DialogTrigger>
           <DialogContent>
