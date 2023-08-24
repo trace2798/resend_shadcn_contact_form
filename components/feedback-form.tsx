@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
+import { MessageCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
@@ -24,7 +25,6 @@ import {
 } from "./ui/form";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "./ui/use-toast";
-import { MessageCircle } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2),
