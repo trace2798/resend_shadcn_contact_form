@@ -84,7 +84,7 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({}) => {
 
   return (
     <>
-      <div className="fixed right-8 bottom-8">
+      <div className="fixed right-10 bottom-16">
         <Dialog>
           <DialogTrigger>
             <MessageCircle className="h-10 w-10" />
