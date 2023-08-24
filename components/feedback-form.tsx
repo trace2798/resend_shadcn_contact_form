@@ -24,6 +24,7 @@ import {
 } from "./ui/form";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "./ui/use-toast";
+import { MessageCircle } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2),
@@ -85,7 +86,8 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({}) => {
     <>
       <Dialog>
         <DialogTrigger>
-          <Button variant="outline">Send a Feedback</Button>
+          <MessageCircle className="h-10 w-10" />
+          {/* <Button variant="outline">Send a Feedback</Button> */}
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -156,7 +158,6 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({}) => {
                   </FormItem>
                 )}
               />
-
               <Button
                 type="submit"
                 className="mt-5 w-fit"
