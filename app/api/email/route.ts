@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     const data = await resend.emails.send({
       from: "Feedback Form <feedback@upstash.app>",
       to: "shreyaschaliha27@protonmail.com",
-      // bcc: ["tres5840@gmail.com"],
+      // cc: ["tres5840@gmail.com"],
       subject: `${name} send you this feedback.`,
       reply_to: email,
       react: React.createElement(FeedbackFormEmail, {
