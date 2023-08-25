@@ -43,17 +43,21 @@ export async function POST(req: NextRequest) {
         number: number,
       }),
     });
-
-    const data2 = resend.emails.send({
-      from: "Upstash Team <feedback@upstash.app>",
-      to: `${email}`,
-      subject: "Submission Confirmation From Upstash Team",
-      react: React.createElement(ResponseBackEmail, {
-        name: name,
-      }),
-    });
     console.log(data, "Feedback");
-    console.log(data2, "response mail");
+
+    setTimeout(async () => {
+      const data2 = await resend.emails.send({
+        from: "Upstash Team <feedback@upstash.app>",
+        to: `${email}`,
+        subject: "Submission Confirmation From Upstash Team",
+        react: React.createElement(ResponseBackEmail, {
+          name: name,
+        }),
+      });
+      console.log(data2, "response mail");
+    }, 10);
+
+    console.log(setTimeout, "response mail");
     // If you are using the free plan from resend labs. Make sure the value for "to" field is your own email address with which you created the account in resend.
     // Otherwise you will get a error with statusCode 403
     // {
