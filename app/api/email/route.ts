@@ -1,5 +1,5 @@
 import FeedbackFormEmail from "@/email/create-email-from-form";
-// import ResponseBackEmail from "@/email/response-back";
+import ResponseBackEmail from "@/email/response-back";
 import { rateLimit } from "@/lib/rate-limit";
 import { NextRequest, NextResponse } from "next/server";
 import React from "react";
@@ -31,10 +31,10 @@ export async function POST(req: NextRequest) {
     }
 
     const data = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
+      from: "Feedback Form <feedback@upstash.app>",
       to: "shreyaschaliha27@protonmail.com",
       // bcc: ["tres5840@gmail.com"],
-      subject: `${name} send you this message.`,
+      subject: `${name} send you this feedback.`,
       reply_to: email,
       react: React.createElement(FeedbackFormEmail, {
         message: message,
@@ -44,14 +44,14 @@ export async function POST(req: NextRequest) {
       }),
     });
 
-    // resend.emails.send({
-    //   from: "Upstash Team <onboarding@resend.dev>",
-    //   to: email,
-    //   subject: "Submission Confirmation",
-    //   react: React.createElement(ResponseBackEmail, {
-    //     name: name,
-    //   }),
-    // });
+    resend.emails.send({
+      from: "Upstash Team <feedback@upstash.app>",
+      to: `${email}`,
+      subject: "Submission Confirmation From Upstash Team",
+      react: React.createElement(ResponseBackEmail, {
+        name: name,
+      }),
+    });
     console.log(data);
     // If you are using the free plan from resend labs. Make sure the value for "to" field is your own email address with which you created the account in resend.
     // Otherwise you will get a error with statusCode 403

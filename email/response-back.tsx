@@ -15,7 +15,6 @@ export default function ResponseBackEmail({ name }: ResponseBackEmailProps) {
           <br />
           Thank you for you feedback.
           <br />
-          Thank you,
           <br />
           <br />
           Upstash Team
